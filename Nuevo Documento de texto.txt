@@ -1,0 +1,16 @@
+Estudiar UD1. Introducción al lenguaje de marcas, mirar extensiones de lenguajes de marcas ej .xml
+Repasar tiempos ingles y el get off com se llame eso
+Resumen de entornos y estudiar
+
+
+
+Leer has 1.2 ¿que es la sostenibilidad?
+Tema 1 Examen programación dia 1
+
+Todo lenguaje interpretado se puede compilar
+Verdadero
+
+Todo lenguaje compilado se puede interpretar
+Falso
+
+https://bormolina.github.io/
