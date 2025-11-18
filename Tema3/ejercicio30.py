@@ -9,6 +9,6 @@ while True:
 
     if planetas.count(planeta) > 0:
         n = planetas.index(planeta)
-        print(f"El planeta {planeta} tiene una masa {masas[n]} y un radio {radios[n]}")
+        print(f"La posicion en el sistema solar de {planeta} es {planetas.index(planeta)+1}, masa {masas[n]} y radio {radios[n]}")
     else:
         print("No valido")
