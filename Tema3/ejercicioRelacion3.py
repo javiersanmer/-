@@ -1,12 +1,11 @@
 import random
-def emparejar(lista: list):
-    copia = lista.copy()
-    while len(copia) > 0:
-        n1 = random.randint(0, len(copia) -1)
-        jugador1 = copia.pop(n1)
+def emparejar(lista: list[str]):
+    while len(lista) > 0:
+        n1 = random.randint(0, len(lista) - 1)
+        jugador1 = lista.pop(n1)
 
-        n2 = random.randint(0, len(copia) -1)
-        jugador2 = copia.pop(n2)
+        n2 = random.randint(0, len(lista) - 1)
+        jugador2 = lista.pop(n2)
         print(f"{jugador1} vs {jugador2}")
 
 tenistas_top_8 = [
@@ -20,4 +19,4 @@ tenistas_top_8 = [
     "Álex de Miñaur"      # 3,735 puntos
 ]
 
-emparejar(tenistas_top_8)
+emparejar(tenistas_top_8.copy())
