@@ -5,8 +5,8 @@ matriz = [
     [1, 0, -1]
 ]
 
-for fila in matriz:
-    for elemento in fila:
+for i, fila in enumerate(matriz):
+    for j, elemento in enumerate(fila):
         if elemento < 0:
-            elemento = elemento * (-1)
-        print(elemento, end = " ")
+            matriz[i][j] *= -1
+print(matriz)

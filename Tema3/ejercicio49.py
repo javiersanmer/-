@@ -4,10 +4,10 @@ matriz = [
     ["Pez", "Hurón", "Ardilla"],
     ["Iguana", "Serpiente", "Erizo"]
 ]
-mayor = matriz[0][0]
+masLetras = matriz[0][0]
 for fila in matriz:
-    for j in fila:
-        if len(mayor) < len(j):
-            mayor = j
+    for e in fila:
+        if len(masLetras) < len(e):
+            masLetras = e
     
-print(mayor)
+print(masLetras)

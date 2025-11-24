@@ -1,8 +1,10 @@
 import random
-def devuelveMatriz(n:list[int], m:list[int], a:int, b:int):
+def matrizAleatoria(n:int, m:int, a:int, b:int) -> list[list[int]]:
     matriz = []
-    for i in range(n):
-        for j in range(m):
-
+    for _ in range(n):
+        matriz.append([random.randint(a,b) for _ in range(m)])
     return matriz
 
+resultado =matrizAleatoria(4,4,1,2)
+
+print(resultado)

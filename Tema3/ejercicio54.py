@@ -5,13 +5,11 @@ alumnos = [
     ["Gerardo", 5, 5, 5],
     ["Einstein", 10, 10, 10]
 ]
-total = 0
-contador = 0
-for alumno in alumnos:
-    nombre = alumno[0]
-    notas = alumno[1:]
 
-    total += sum(notas)
-    contador += len(notas)
+medias = []
 
-print(total/contador)
+for fila in alumnos:
+    notas = fila[1:]
+    medias.append(sum(notas)/ len(notas))
+mediaClase = sum(medias) / len(medias)
+print(mediaClase)

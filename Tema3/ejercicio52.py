@@ -6,13 +6,15 @@ alumnos = [
     ["Einstein", 10, 10, 10]
 ]
 
-mediaBaja= 0
-alumnoBajo = alumnos[0]
-for alumno in alumnos:
-    nombre = alumno[0]
-    notas = alumno[1:]
-    media = sum(notas)/ len(notas)
-    if media < mediaBaja:
-        mediaBaja = media
-        alumnoBajo = alumno
-print(f"El alumno con la {media} más baja es {alumnoBajo}")
+medias = []
+
+for fila in alumnos:
+    notas = fila[1:]
+    medias.append(sum(notas)/ len(notas))
+
+print(medias)
+
+mediaMin = min(medias)
+posMin = medias.index(mediaMin)
+
+print(f"{mediaMin} es {alumnos[posMin][0]}")

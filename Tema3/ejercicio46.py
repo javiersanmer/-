@@ -7,11 +7,11 @@ matriz = [
 sumTotal1 = sumTotal2 = 0
 
 for fila in matriz:
-    for elemento in fila:
-        sumTotal1 += elemento
+    for n in fila:
+        sumTotal1 += n
 
 print(sumTotal1)
 
 for fila in matriz:
-    sumTotal2 += sum(fila)
+    sumTotal2 += sum(fila) #sum funciona como un segundo for
 print(sumTotal2)

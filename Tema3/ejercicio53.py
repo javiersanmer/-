@@ -7,13 +7,5 @@ alumnos = [
 ]
 
 for alumno in alumnos:
-    nombre = alumno[0]
-    notas = alumno[1:]
-    
-    suspenso = False
-    
-    for nota in notas:
-        if nota < 5:
-            suspenso = True
-    if suspenso:
-        print(f"{nombre} tiene al menos una asignatura suspensa")
+    if not min(alumno[1:]) >= 5:
+        print(f"{alumno[0]} tiene alguna suspensa")
