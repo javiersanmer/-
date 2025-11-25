@@ -1,6 +1,4 @@
 import random
-#3 niveles iguales, lo unico q cambia es el len. Haz una funcion para nivel y lo unico a cambiar sea longitud
-
 def mostrarHuecos(palabra, letraAcierto):
     huecos = []
     for letra in palabra:
@@ -8,80 +6,81 @@ def mostrarHuecos(palabra, letraAcierto):
             huecos.append(letra)
         else:
             huecos.append("_")
-    return huecos
+    print(huecos)
 
 def pideLetra():
-    letra = input("Introduce una letra: ")  
-    letraFinal = letra.lower()
-    return letraFinal
+    letra = input("Introduce una letra: ")
+    return letra
 
-def menuJuego(nNivel, vidas, palabra, letrasAcierto):
-    print("-------------------")
-    print(f"Nivel {nNivel}")
-    print("-------------------")
-    print(f"Tienes {vidas}")
-    print("La palabra que debes encontrar: ")
-    
-    for letra in palabra:
-        if letra in letrasAcierto:
-            print(letra, end=" ")
-        else:
-            print("_",end = " ")
-    print("")
+def menuJuego(vidas, palabra, letraAcierto):
+    print(f"Tienes {vidas} vidas")
+    print("Palabra que debes encontrar: ")
+    mostrarHuecos(palabra, letraAcierto)
 
 def mostrarLista(lista):
     for elemento in lista:
         print(elemento, end=" ")
     
 def eligePalabra(nNivel):
-    if nNivel == 1:
-        palabra =["Illo", "Fohs", "Payo", "Loco"]
-    elif nNivel == 2:
-        palabra = ["sadfg", "sdfg", "dsfgfg", "dsfg"]
-    elif nNivel == 3:
-        palabra = ["dfgsdsfg", "dfgsdsd", "dsfgsdfg", "sdfgfsdg"]
+    nivel1 = ["TAZA", "GATO", "LORO", "MESA"]
+    nivel2 = ["PARTIR", "ESPERA", "SUFRIR", "PYTHON" ]       
+    nivel3 = ["PELICULA", "CANGREJO", "RATON", "SOMBRERO", "TORNILLO"]
     
-    palabraAleatoria = random.randint(0, len(palabra) - 1)
-    return palabra[palabraAleatoria]
+    if nNivel == 1:
+        listaNivel = nivel1
+    elif nNivel == 2:
+        listaNivel = nivel2
+    elif nNivel == 3:
+        listaNivel = nivel3
 
-def vidasTotalesYletras(letrasAcierto,letraRepetida,palabra, letra, vidas):
+    palabraAleatoria = random.randint(0, len(listaNivel) - 1)
+    return listaNivel[palabraAleatoria]
+
+def vidasTotales(letrasAcierto,letraRepetida,palabra, letra, vidas):
     if letra in letrasAcierto or letra in letraRepetida:
         print("Ya has probado")
         vidas -=1
-        return vidas
-
-    encontrado = False
-    for i in palabra:
-        if i == letra:
-            encontrado = True
-            break
-    
-    if encontrado and letra not in letrasAcierto:
-        print("Has encontrado una letra! Te sumo una vida")
-        vidas += 1
-        letrasAcierto.append(letra)
     else:
-        print("Has fallado :(, pierdes una vida")
-        vidas -= 1
+        encontrado = False
+        for i in palabra:
+            if i == letra:
+                encontrado = True
+                break
+        
+        if encontrado:
+            print("Has encontrado una letra! Te sumo una vida")
+            letrasAcierto.append(letra)
+            vidas += 1
+        else:
+            print("Has fallado :(, pierdes una vida")
+            vidas -= 1
     return vidas
 
+def palabraCompletada(palabra, letraAcierto):
+    completada = True
+    for p in palabra:
+        if p not in letraAcierto:
+            completada = False
+    return completada
 
-def jugar(palabra, vidas, nNivel):
+def jugar(palabra, vidas):
     letrasAcierto = []
     letraRepetida = []
 
     while vidas > 0:
-        menuJuego(nNivel, vidas, palabra, letrasAcierto)
+        menuJuego(vidas, palabra, letrasAcierto)
         letra = pideLetra()
-        vidas = vidasTotalesYletras(letrasAcierto,letraRepetida,palabra, letra, vidas)
+        vidas = vidasTotales(letrasAcierto,letraRepetida,palabra, letra, vidas)
 
-        completado = False
-        for i in palabra:
-            if i == letra:
-                encontrado = True
+
+        if palabraCompletada(palabra, letrasAcierto):
+            print("Enhorabuena has encontrado la palabra: ")
+            for p in palabra:
+                print(p, end= " ")
             break
-
-        if completado:
-            print("Has completado una palabra")
-            return True
-    return False
+    
+    if vidas == 0:
+        print("Has perdido, la palabra era: ")
+        for p in palabra:
+            print(p, end= " ")
+    return vidas
