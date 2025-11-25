@@ -44,9 +44,20 @@ def eligePalabra(nNivel):
     palabraAleatoria = random.randint(0, len(palabra) - 1)
     return palabra[palabraAleatoria]
 
-def vidasTotales(letrasAcierto,palabra, letra, vidas):
-    if letra in palabra:
-        print("Has encontrado una letra!!! Te sumo una vida")
+def vidasTotalesYletras(letrasAcierto,letraRepetida,palabra, letra, vidas):
+    if letra in letrasAcierto or letra in letraRepetida:
+        print("Ya has probado")
+        vidas -=1
+        return vidas
+
+    encontrado = False
+    for i in palabra:
+        if i == letra:
+            encontrado = True
+            break
+    
+    if encontrado and letra not in letrasAcierto:
+        print("Has encontrado una letra! Te sumo una vida")
         vidas += 1
         letrasAcierto.append(letra)
     else:
@@ -55,18 +66,22 @@ def vidasTotales(letrasAcierto,palabra, letra, vidas):
     return vidas
 
 
-def jugar(palabra, vidas):
+def jugar(palabra, vidas, nNivel):
     letrasAcierto = []
+    letraRepetida = []
 
     while vidas > 0:
+        menuJuego(nNivel, vidas, palabra, letrasAcierto)
         letra = pideLetra()
-        vidas = vidasTotales(letrasAcierto,palabra, letra, vidas)
+        vidas = vidasTotalesYletras(letrasAcierto,letraRepetida,palabra, letra, vidas)
 
-        completada = True
-        for letraPalabra in palabra:
-            if letraPalabra not in letrasAcierto:
-                completa = False
-        if completada:
+        completado = False
+        for i in palabra:
+            if i == letra:
+                encontrado = True
+            break
+
+        if completado:
             print("Has completado una palabra")
             return True
     return False

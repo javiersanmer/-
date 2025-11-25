@@ -5,10 +5,7 @@ maxNivel = 3
 victoria = False
 while nNivel <= maxNivel and vidas > 0:
     palabra =  funciones.eligePalabra(nNivel)
-    funciones.menuJuego(nNivel, vidas, palabra, [])
-
-    vidas = funciones.jugar(palabra, vidas)
-    victoria = funciones.jugar(palabra, vidas)
+    victoria = funciones.jugar(palabra, vidas, nNivel)
     
     if victoria:
         if nNivel == maxNivel:
@@ -18,7 +15,8 @@ while nNivel <= maxNivel and vidas > 0:
             print(f"Sube al nivel {nNivel + 1}")
             nNivel += 1
     else:
-        print("Malo")
+        print("Has perdido")
+        break
 
 
 
